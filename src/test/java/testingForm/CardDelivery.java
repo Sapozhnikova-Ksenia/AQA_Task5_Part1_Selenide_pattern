@@ -41,10 +41,14 @@ public class CardDelivery {
 
         $("[data-test-id=\"replan-notification\"]").shouldBe(visible)
                 .shouldHave(text("Необходимо подтверждение"));
+
         $$("button").find(exactText("Перепланировать")).click();
-        $("[data-test-id=\"success-notification\"]").shouldBe(visible)
-                .shouldHave(text("Успешно!"));
-        $("[data-test-id=\"success-notification\"]").shouldBe(visible)
+
+        $(withText("Успешно!"))
+                .shouldBe(visible);
+        $(withText("Встреча успешно запланирована на"))
+                .shouldBe(visible);
+        $(withText("Встреча успешно запланирована на"))
                 .shouldHave(text("Встреча успешно запланирована на " + newPlanningDate));
 
     }
